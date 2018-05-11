@@ -1,6 +1,7 @@
 //-- Config
 
 // connects to mqtt for lights 
+// note need to port local ip to ddns 
 
 
 var hostIP = "192.168.0.175";
