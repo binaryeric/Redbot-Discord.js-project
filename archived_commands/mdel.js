@@ -7,8 +7,8 @@ exports.run = (client, msg, args) => {
 			if(args[0]){
 				let n = parseInt(args[0])
 				if(n && n <= 100) {
-				let fgt = msg.mentions.members.first();
-					if(!fgt) {
+				let person = msg.mentions.members.first();
+					if(!person) {
 						msg.reply("Please make sure to actually *mention* the user you are trying to delete messages for as the second parameter. (Type @[locate the user]).");
 					} else {
 						msg.channel.fetchMessages({
@@ -16,7 +16,7 @@ exports.run = (client, msg, args) => {
 						}).then(ms => {
 					        let msg_array = ms.array();
 					        // filter the message to only your own
-					        msg_array = msg_array.filter(m_idx => m_idx.author.id === fgt.user.id);
+					        msg_array = msg_array.filter(m_idx => m_idx.author.id === person.user.id);
 					        // limit to the requested number + 1 for the command message
 					        msg_array.length = n + 1;
 					        // Has to delete messages individually. Cannot use `deleteMessages()` on selfbots.
@@ -25,7 +25,7 @@ exports.run = (client, msg, args) => {
 					        if(config.client_mode === false){
 								let confm = require("../bot_res/BasicEmbed.js");
 								//
-								confm.run(client,msg,[`${args[0]} of ${names.run(fgt.user.tag)}'s messages deleted!`,0500103,"spam = shrekt!",`redbot ate your spam for breakfeast ;)\nPlease follow all server rules *${names.run(fgt.user.tag)}.*\n\n**Name & Tag:**\t*${fgt.user.tag}*`]);		
+								confm.run(client,msg,[`${args[0]} of ${names.run(person.user.tag)}'s messages deleted!`,0500103,"spam = shrekt!",`redbot ate your spam for breakfeast ;)\nPlease follow all server rules *${names.run(person.user.tag)}.*\n\n**Name & Tag:**\t*${person.user.tag}*`]);		
 							}
 			      		});
 		      		}

@@ -4,12 +4,12 @@ exports.run = (client, msg, args) => {
 	if(msg.channel.type !== "dm") {
 		if(msg.guild.members.get(client.user.id).hasPermission("MANAGE_NICKNAMES")) {
 			if(msg.mentions.length > 0) {
-				fgts = msg.mentions;
+				ppl = msg.mentions;
 				console.log("HOLA");
-				for (fag in fgts) {
+				for (dude in ppl) {
 					for(var i =0; i < args.length; i++) {
 						console.log(args[i]);
-						if(args[i] === fag.user.tag) {
+						if(args[i] === dude.user.tag) {
 							args.splice(1,i);
 						}
 					}
@@ -17,8 +17,8 @@ exports.run = (client, msg, args) => {
 				let nick = args.join(" ");
 				if(nick.length <= 32) {
 					console.log("SET", nick);
-					for(fag in fgts) {
-						msg.guild.members.get(fag.user.id).setNickname(nick);
+					for(dude in ppl) {
+						msg.guild.members.get(dude.user.id).setNickname(nick);
 					}
 				} else {
 					msg.reply(`Please note that nicknames can be a maximum of 32 characters.\n(yes, this includes spaces)`).then(m => m.delete(4000));

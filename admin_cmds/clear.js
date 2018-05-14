@@ -40,11 +40,11 @@ exports.run = (client, msg, args) => {
 				}
 			}
 			if(args.length >= 2) {
-				let fgts = msg.mentions
-				if(fgts.length > 0) {
+				let ppl = msg.mentions
+				if(ppl.length > 0) {
 					if(n <= 100) {
-						deleteForUser(msg, fgts, n);
-						msg.reply(`${n} messages for ${fgts.length} users have been cleared!.`).then(m => m.delete(3000));
+						deleteForUser(msg, ppl, n);
+						msg.reply(`${n} messages for ${ppl.length} users have been cleared!.`).then(m => m.delete(3000));
 					} else {
 						msg.reply("This command requires a number between 1 and 100.").then(m => m.delete(3000));
 					}
